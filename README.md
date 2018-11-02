@@ -12,6 +12,7 @@ Assign yourself 7 or 8 points of tasks
 
 
 For 2 through 11 make sure you "Document SQL Queries (Ensure that proper documentation is provided for each query including a query (a) number, (b) purpose and (c) summary of the expected result.)"
+
 2) SQL Query 1: Computes a join of at least three tables
 2 Point
 
