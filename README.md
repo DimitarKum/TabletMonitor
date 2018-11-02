@@ -1,5 +1,7 @@
 Work left:
+
 Total Points: 22
+
 Assign yourself 7 or 8 points of tasks
 
 0) Create PDF document containing schema diagram (you can create a screenshot of our tables for this).
@@ -26,8 +28,10 @@ For 2 through 11 make sure you "Document SQL Queries (Ensure that proper documen
 2 Point
 
 
-Take all or none from 7 through 11!
+Take all or none from 7 through 11
+
 For 7 through 11 "As  for  the  remaining  five  queries,  you must design and construct the SQL queries such that they are useful and pertinent to your database application":
+
 7) SQL Query 6: Create your own non-trivial SQL query
 1 Point
 
