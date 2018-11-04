@@ -54,6 +54,12 @@ Create Table DeviceRecord (
 
 -- Some sample insert statements to populate data so we can see what our tables look like:
 Insert Into Employee(Fname, Lname)
+Values('Alex', 'Shif');
+
+Insert Into Employee(Fname, Lname)
+Values('Nadi', 'Kumilachew');
+
+Insert Into Employee(Fname, Lname)
 Values('Kenny', 'Burrel');
 
 Insert Into Employee(Fname, Lname)
@@ -78,14 +84,16 @@ Insert Into Device(Model)
 Values('IPad Pro');
 -- Here I have add another 5 devices 
 --because the we have to have at least 10 thing in each table 
-Insert Into Device(Model)
-Values('Android');
-Insert Into Device(Model)
-Values('Android');
-Insert Into Device(Model)
-Values('Android');
-Insert Into Device(Model)
-Values('Android');
+Insert Into Device(make,Model)
+Values('Android', 'Galaxy');
+Insert Into Device(make,Model)
+Values('Android', 'Galaxy');
+Insert Into Device(make,Model)
+Values('Android', 'Galaxy');
+Insert Into Device(make,Model)
+Values('Android', 'GalaxyS8');
+Insert Into Device(make,Model)
+Values('Android', 'Galaxy');
 
 
 Insert Into DeviceRecord (DeviceId, EmployeeId)
@@ -106,3 +114,17 @@ From DeviceRecord;
 --***************************
 --Part C
 --***************************
+--SQL Query 1: Computes a join of at least three tables
+-- I made this query to see anybody who is currently checked out a tablet jsut like a general history
+-- of course by using Join I have tested also please feel free to test it 
+SELECT E.Fname, E.Lname, D.make, D.Model, DR.CHECKOUTTIME, DR.Returntime
+FROM Device D JOIN DEVICERECORD DR ON
+D.ID = Dr.deviceid JOIN employee E on DR.EMPLOYEEID = E.ID;
+--SQL Query 2:Uses nested queries with the ANY or ALL operator and uses a GROUP BY clause 
+--
+--
+--
+
+
+
+
