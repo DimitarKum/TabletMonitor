@@ -76,6 +76,17 @@ Insert Into Device(Model)
 Values('IPad Pro');
 Insert Into Device(Model)
 Values('IPad Pro');
+-- Here I have add another 5 devices 
+--because the we have to have at least 10 thing in each table 
+Insert Into Device(Model)
+Values('Android');
+Insert Into Device(Model)
+Values('Android');
+Insert Into Device(Model)
+Values('Android');
+Insert Into Device(Model)
+Values('Android');
+
 
 Insert Into DeviceRecord (DeviceId, EmployeeId)
 Values(1, 2);
