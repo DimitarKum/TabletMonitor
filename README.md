@@ -5,7 +5,7 @@ Total Points: 22
 Assign yourself 7 or 8 points of tasks
 
 0) Create PDF document containing schema diagram (you can create a screenshot of our tables for this).
-1 Point
+1 Point (Alemneh alredy did this part) 
 
 1) Sample Data - Add couple more Devices and Employees, create several (5-6) DeviceRecords with different check out and return times. You can delete the current device records from the sample data.
 2 Point
@@ -14,7 +14,7 @@ Assign yourself 7 or 8 points of tasks
 For 2 through 11 make sure you "Document SQL Queries (Ensure that proper documentation is provided for each query including a query (a) number, (b) purpose and (c) summary of the expected result.)"
 
 2) SQL Query 1: Computes a join of at least three tables
-2 Point
+2 Point (Alemneh Alredy did this part)
 
 3) SQL Query 2: Uses nested queries with the ANY or ALL operator and uses a GROUP BY clause
 2 Point
