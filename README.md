@@ -8,7 +8,7 @@ Assign yourself 7 or 8 points of tasks
 1 Point (Alemneh alredy did this part) 
 
 1) Sample Data - Add couple more Devices and Employees, create several (5-6) DeviceRecords with different check out and return times. You can delete the current device records from the sample data.
-2 Point
+2 Point  -- Leul
 
 
 For 2 through 11 make sure you "Document SQL Queries (Ensure that proper documentation is provided for each query including a query (a) number, (b) purpose and (c) summary of the expected result.)"
