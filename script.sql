@@ -160,15 +160,6 @@ Values('Lenovo', 'Tab 7 Essential');
 Insert Into Device(Make, Model)
 Values('Lenovo', 'Tab 7 Essential');
 
-/* Make sure all devices currently checked out
-(their DeviceRecord has no return time) are marked as checked out.*/
-Update Device
-Set Device.IsCheckedOut = 'Y'
-Where Device.ID In (Select DeviceRecord.DeviceId as ID
-                    From DeviceRecord
-                    Where ReturnTime IS NULL);
-
-
 /*
 We insert 9 DeviceRecords into the database.
 These will indicate that all our devices are currently checked out
@@ -203,6 +194,14 @@ Values(9, 10);
 
 Insert Into DeviceRecord (DeviceId, EmployeeId)
 Values(10, 1);
+
+/* Make sure all devices currently checked out
+(their DeviceRecord has no return time) are marked as checked out.*/
+Update Device
+Set Device.IsCheckedOut = 'Y'
+Where Device.ID In (Select DeviceRecord.DeviceId as ID
+                    From DeviceRecord
+                    Where ReturnTime IS NULL);
 
 /* To display all our tables run the following: */
 -- Select *
