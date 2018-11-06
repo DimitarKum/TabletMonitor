@@ -50,10 +50,10 @@ For 7 through 11 "As  for  the  remaining  five  queries,  you must design and c
 
 
 12) Document Create table commands
-3 Point 
+3 Point (When I went and try to write comment for every create table there is at least one comment os I don't think this is necessary (Alemneh))
 
-13) Document sample data commands
-1 Point 
+13) Document sample data commands 
+1 Point (This question is not clear to me (Alemneh)
 
 
 
