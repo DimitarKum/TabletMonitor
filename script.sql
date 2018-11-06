@@ -6,32 +6,66 @@
 --***************************
 --Part A
 --***************************
+/* Table creation: */
 
--- Drop tables if already existing to recreate schema
--- Drop Table Device;
--- Drop Table DeviceRecord;
--- Drop Table Employee;
-
--- Create Employee Table
+/*
+Employee Table: Stores information about each Employee.
+Employees haves the following attributes:
+ - ID: unique numeric identifier. ID should not be manually
+    set when adding new employees. Instead, omit ID and the table
+    will automatically assign the next available ID to employee.
+ - Fname: First name of employee.
+ - Lname: Last name of employee.
+ - Position: Employee's position in the company.
+    Position be one of the following values "Team Member", "Supervisor".
+    To add more positions modify the constraint CheckPositionValue.
+*/
 Create Sequence employee_id_sequence Start With 1;
 Create Table Employee (
     ID Number(10) default employee_id_sequence.nextval Primary Key,
     Fname Varchar(30),
     Lname Varchar(30),
     Position Varchar(15) default 'Team Member'
-    Check (Position = 'Team Member' OR Position = 'Supervisor') -- Position can only be TeamMember or Supervisor
+    Constraint CheckPositionValue Check (Position = 'Team Member' OR Position = 'Supervisor') -- Position can only be TeamMember or Supervisor
 );
 
--- Create Device table
+/*
+Device Table: Stores information about each physical device.
+Devices haves the following attributes:
+ - ID: unique numeric identifier. ID should not be manually
+    set when adding new devices. Instead, omit ID and the table
+    will automatically assign the next available ID to employee.
+ - Make: device manufacturer. Possible values are 'Apple', 'Samsung', 'Lenovo'.
+    Default make is 'Apple' as most Devices are expected to be Apple tablets.
+    To add additional manufacturers modify constraint DeviceManufacturers.
+ - Model: device model.
+ - IsCheckedOut: whether device is currently checked out (in use) or
+    is back in storage. IsCheckedOut can only be "Y" or "N".
+*/
 Create Sequence device_id_sequence Start With 1;
 Create Table Device (
     ID Number(10) default device_id_sequence.nextval Primary Key,
-    Make Varchar(30) default 'Apple' Check (Make = 'Apple' OR Make = 'Android'),
+    Make Varchar(30) default 'Apple'
+    Constraint DeviceManufacturers Check (Make = 'Apple' OR Make = 'Samsung' OR Make = 'Lenovo'),
     Model Varchar(30),
     IsCheckedOut CHAR(1) default 'N' Check (IsCheckedOut = 'Y' OR IsCheckedOut = 'N')
 );
 
--- Create DeviceRecord table that keeps track of when a device is checked out and returned
+/*
+DeviceRecord Table: Stores information about each device usage.
+    A DeviceRecord represent a single log or a session of use for a
+    device being checked out for storage (and eventually returned).
+DeviceRecords haves the following attributes:
+ - DeviceId: The ID of the Device being checked out.
+ - CheckOutTime: The dated time at which the device was checked out.
+    CheckOutTime is in the company's local time zone.
+ - ReturnTime: The dated time at which the device was returned.
+    ReturnTime is null when the device is still in used (checked out).
+    ReturnTime is null by default, since the device is initially checked out
+    and returned later.
+    ReturnTime is in the company's local time zone.
+ - EmployeeId - The Employee ID of the employee that checked out the device.
+*/
 Create Table DeviceRecord (
     DeviceId Number(10),
     CheckOutTime Timestamp With Local Time Zone default CURRENT_TIMESTAMP,
@@ -39,9 +73,14 @@ Create Table DeviceRecord (
     EmployeeId Number(10),
     Primary Key (DeviceId, CheckOutTime),
     Foreign Key (DeviceId) References Device(ID)
-        On Delete Cascade, -- Delete all records for a device, if the device is removed
+        /* Delete all records for a device, if the device is removed */
+        On Delete Cascade,
+        /* Following is an On Update trigger that 
+            make sense for our DB but do not work in Oracle. */
         -- On Update No Action, -- Update all records to use the new device ID, if device ID is changed
     Foreign Key (EmployeeId) References Employee(ID),
+        /* Following are On Delete/On Update triggers that 
+            make sense for our DB but do not work in Oracle. */
         -- On Delete No Action, -- Retain records of employees even after they leave
         -- On Update Cascade -- Update all records to use the new employee ID, if the employee ID is changed
     Constraint ReturnAfterCheckOut Check (CheckOutTime < ReturnTime OR ReturnTime IS NULL)
@@ -51,8 +90,14 @@ Create Table DeviceRecord (
 --***************************
 --Part B
 --***************************
+/* Sample data: */
 
--- Some sample insert statements to populate data so we can see what our tables look like:
+/*
+We insert 10 employees into the database.
+Notice we can omit ID and Position since these attributes
+have appropriate default values: ID increments automatically
+and the Position of all our employees is "Team Member".
+*/
 Insert Into Employee(Fname, Lname)
 Values('Kenny', 'Burrel');
 
@@ -65,7 +110,6 @@ Values('Jenny', 'Rosen');
 Insert Into Employee(Fname, Lname)
 Values('David', 'Guetta');
 
---Added extra sample data -- leul
 Insert Into Employee(Fname, Lname)
 Values('Alex', 'Berry');
 
@@ -85,6 +129,10 @@ Insert Into Employee(Fname, Lname)
 Values('Kelly', 'Johnson');
 
 
+/*
+We insert 9 devices into the database.
+Notice we can omit Make for Apple devices since this is the default value.
+*/
 Insert Into Device(Model)
 Values('IPad Air');
 
@@ -100,25 +148,38 @@ Values('IPad Air');
 Insert Into Device(Model)
 Values('IPad Pro');
 
-Insert Into Device(Model)
-Values('Android');
+Insert Into Device(Make, Model)
+Values('Samsung', 'Galaxy Tab S2');
 
-Insert Into Device(Model)
-Values('Android');
+Insert Into Device(Make, Model)
+Values('Samsung', 'Galaxy Tab S2');
 
-Insert Into Device(Model)
-Values('Android');
+Insert Into Device(Make, Model)
+Values('Lenovo', 'Tab 7 Essential');
 
-Insert Into Device(Model)
-Values('Android');
+Insert Into Device(Make, Model)
+Values('Lenovo', 'Tab 7 Essential');
 
+/* Make sure all devices currently checked out
+(their DeviceRecord has no return time) are marked as checked out.*/
+Update Device
+Set Device.IsCheckedOut = 'Y'
+Where Device.ID In (Select DeviceRecord.DeviceId as ID
+                    From DeviceRecord
+                    Where ReturnTime IS NULL);
+
+
+/*
+We insert 9 DeviceRecords into the database.
+These will indicate that all our devices are currently checked out
+by some of our employees.
+*/
 Insert Into DeviceRecord (DeviceId, EmployeeId)
 Values(1, 2);
 
 Insert Into DeviceRecord (DeviceId, EmployeeId)
 Values(2, 3);
 
--- Added more DeviceRecordes --
 Insert Into DeviceRecord (DeviceId, EmployeeId)
 Values(3, 4);
 
@@ -143,56 +204,61 @@ Values(9, 10);
 Insert Into DeviceRecord (DeviceId, EmployeeId)
 Values(10, 1);
 
--- Show all our tables:
-Select *
-From Employee;
-Select *
-From Device;
-Select *
-From DeviceRecord;
-
+/* To display all our tables run the following: */
+-- Select *
+-- From Employee;
+-- Select *
+-- From Device;
+-- Select *
+-- From DeviceRecord;
 
 --***************************
 --***************************
 --Part C
 --***************************
---Number 1 
---Computes a join of at least three tables 
---This query join three table in order to much employe info, device info and their related data
---associated with their checkout status 
+/* Useful queries: */
+
+-- Number 1 
+-- Computes a join of at least three tables 
+-- This query join three table in order to much employe info, device info and their related data
+-- associated with their checkout status 
   select e.Fname, e.Lname, d.make, D.Model, dr.checkouttime, dr.Returntime 
   from Device d JOIN devicerecord dr ON 
   D.ID = dr.deviceid JOIN employee e on dr.employeeid = E.ID
 -- Summary:
---employee fname, lname, device make and model, device record checkout and check in time 
+-- employee fname, lname, device make and model, device record checkout and check in time 
 
---Number 3
+-- Number 2
 -- Nested queries with the ANY operator thta uses a GROUP BY clause.
 SELECT COUNT(ID), POSITION
-  FROM employee
- WHERE id = ALL 
-       (SELECT employeeid
-          FROM devicerecord
-         WHERE deviceid >= 12)
-         
-         GROUP BY POSITION
-         
- --Number 4
+FROM employee
+WHERE id = ALL 
+    (SELECT employeeid
+    FROM devicerecord
+    WHERE deviceid >= 12)
+GROUP BY POSITION
+
+ --Number 3
  -- The following query selcts deviceid,checkOutTime, returnTime from deviceRecord and returns those record for Kenny.
-
-
 SELECT deviceid,checkOutTime, returnTime FROM deviceRecord 
 where deviceid= (SELECT id
 FROM employee where fname='Kenny')
 
-
---Number 5
+--Number 4
 -- The following query selcts deviceID and checkOutTime from deviceRecord table and model from device then join them using FULL JOIN.
-
 SELECT deviceId, checkOutTime, device.model
 FROM deviceRecord
 FULL OUTER JOIN device ON devicerecord.deviceId = device.id;
 
+-- Number 5: Uses nested queries with any of the set operations UNION, EXCEPT, or INTERSECT.
+-- Select all employees who have currently checked out a device, but do not have Supervisor position.
+Select Employee.ID as EmployeeID, Employee.Fname as FirstName, Employee.Lname as LastName
+From Employee, DeviceRecord, Device
+Where Employee.ID = DeviceRecord.DeviceId AND Device.ID = DeviceRecord.DeviceId AND Device.IsCheckedOut = 'Y'
+Intersect 
+Select Employee.ID as EmployeeID, Employee.Fname as FirstName, Employee.Lname as LastName
+From Employee
+Where Employee.Position <> 'Supervisor';
 
 --Number 6
 --This query will check a device that has been checked out by employee by using employee number
@@ -236,5 +302,3 @@ FULL OUTER JOIN device ON devicerecord.deviceId = device.id;
  from employee
 --Summary:
 --Number of employee (one single row in our case, 10)
-
-
