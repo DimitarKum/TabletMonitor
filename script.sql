@@ -176,9 +176,18 @@ SELECT COUNT(ID), POSITION
          WHERE deviceid >= 12)
          
          GROUP BY POSITION
+         
+ --Number 4
+ -- The following query selcts deviceid,checkOutTime, returnTime from deviceRecord and returns those record for Kenny.
+
+
+SELECT deviceid,checkOutTime, returnTime FROM deviceRecord 
+where deviceid= (SELECT id
+FROM employee where fname='Kenny')
+
 
 --Number 5
--- The following query selcts deviceI and checkOutTime from deviceRecord table and model from device then join them using FULL JOIN.
+-- The following query selcts deviceID and checkOutTime from deviceRecord table and model from device then join them using FULL JOIN.
 
 SELECT deviceId, checkOutTime, device.model
 FROM deviceRecord
