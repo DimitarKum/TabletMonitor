@@ -25,7 +25,7 @@ For 2 through 11 make sure you "Document SQL Queries (Ensure that proper documen
 5) SQL Query 4: Uses a FULL JOIN (Completed By Leul) 
 2 Point
 
-6) SQL Query 5: Uses nested queries with any of the set operations UNION, EXCEPT, or INTERSECT
+6) SQL Query 5: Uses nested queries with any of the set operations UNION, EXCEPT, or INTERSECT (Dimitar)
 2 Point
 
 
@@ -50,10 +50,10 @@ For 7 through 11 "As  for  the  remaining  five  queries,  you must design and c
 
 
 12) Document Create table commands
-3 Point (When I try to write comment on our sql script, for every create table there is at least one comment so I don't think this is necessary (Alemneh))
+3 Point (Dimitar)
 
 13) Document sample data commands 
-1 Point (This question is not clear to me (Alemneh)
+1 Point (Dimitar)
 
 
 
