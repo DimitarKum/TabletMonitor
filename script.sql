@@ -177,6 +177,12 @@ SELECT COUNT(ID), POSITION
          
          GROUP BY POSITION
 
+--Number 5
+-- The following query selcts deviceI and checkOutTime from deviceRecord table and model from device then join them using FULL JOIN.
+
+SELECT deviceId, checkOutTime, device.model
+FROM deviceRecord
+FULL OUTER JOIN device ON devicerecord.deviceId = device.id;
 
 
 --Number 6
