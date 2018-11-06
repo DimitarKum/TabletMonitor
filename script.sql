@@ -65,33 +65,87 @@ Values('Jenny', 'Rosen');
 Insert Into Employee(Fname, Lname)
 Values('David', 'Guetta');
 
+--Added extra sample data -- leul
+Insert Into Employee(Fname, Lname)
+Values('Alex', 'Berry');
+
+Insert Into Employee(Fname, Lname)
+Values('Dimitar', 'Kum');
+
+Insert Into Employee(Fname, Lname)
+Values('Prince', 'Amare');
+
+Insert Into Employee(Fname, Lname)
+Values('John', 'Meany');
+
+Insert Into Employee(Fname, Lname)
+Values('Ras', 'Marley');
+
+Insert Into Employee(Fname, Lname)
+Values('Kelly', 'Johnson');
+
 
 Insert Into Device(Model)
 Values('IPad Air');
+
 Insert Into Device(Model)
-Values('IPad Air');
-Insert Into Device(Model)
-Values('IPad Air');
-Insert Into Device(Model)
-Values('IPad Pro');
+Values('IPad Mini');
+
 Insert Into Device(Model)
 Values('IPad Pro');
+
+Insert Into Device(Model)
+Values('IPad Air');
+
+Insert Into Device(Model)
+Values('IPad Pro');
+
+
+
 -- Here I have add another 5 devices 
 --because the we have to have at least 10 thing in each table 
 Insert Into Device(Model)
 Values('Android');
-Insert Into Device(Model)
-Values('Android');
-Insert Into Device(Model)
-Values('Android');
+
 Insert Into Device(Model)
 Values('Android');
 
+Insert Into Device(Model)
+Values('Android');
+
+Insert Into Device(Model)
+Values('Android');
 
 Insert Into DeviceRecord (DeviceId, EmployeeId)
 Values(1, 2);
+
 Insert Into DeviceRecord (DeviceId, EmployeeId)
 Values(2, 3);
+
+-- Added more DeviceRecordes --
+Insert Into DeviceRecord (DeviceId, EmployeeId)
+Values(1, 2);
+
+Insert Into DeviceRecord (DeviceId, EmployeeId)
+Values(3, 4);
+
+Insert Into DeviceRecord (DeviceId, EmployeeId)
+Values(4, 2);
+
+Insert Into DeviceRecord (DeviceId, EmployeeId)
+Values(5, 3);
+
+Insert Into DeviceRecord (DeviceId, EmployeeId)
+Values(6, 5);
+
+Insert Into DeviceRecord (DeviceId, EmployeeId)
+Values(7, 5);
+
+Insert Into DeviceRecord (DeviceId, EmployeeId)
+Values(8, 6);
+
+Insert Into DeviceRecord (DeviceId, EmployeeId)
+Values(9, 7);
 
 -- Show all our tables:
 Select *
