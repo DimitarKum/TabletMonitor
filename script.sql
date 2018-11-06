@@ -100,10 +100,6 @@ Values('IPad Air');
 Insert Into Device(Model)
 Values('IPad Pro');
 
-
-
--- Here I have add another 5 devices 
---because the we have to have at least 10 thing in each table 
 Insert Into Device(Model)
 Values('Android');
 
@@ -160,3 +156,58 @@ From DeviceRecord;
 --***************************
 --Part C
 --***************************
+--Number 1 
+--Computes a join of at least three tables 
+--This query join three table in order to much employe info, device info and their related data
+--associated with their checkout status 
+  select e.Fname, e.Lname, d.make, D.Model, dr.checkouttime, dr.Returntime 
+  from Device d JOIN devicerecord dr ON 
+  D.ID = dr.deviceid JOIN employee e on dr.employeeid = E.ID
+-- Summary:
+--employee fname, lname, device make and model, device record checkout and check in time 
+
+
+--Number 6
+--This query will check a device that has been checked out by employee by using employee number
+  select e.Lname, d.id, d.make, d.model  
+  from employee e, device d, devicerecord dr
+  where e.id = dr.EMPLOYEEID and d.id = dr.DEVICEID
+--Summary:
+--display Lname, device id, device make and model of 
+--the tables currently has been checked out 
+
+--Number 7
+--This query will find any device that has been checked out by using employee last name.
+  select e.id, e.Lname,e.Fname, d.model, dr.checkouttime, dr.returntime
+  from device d, employee e, devicerecord dr
+  where e.Lname = 'Rosen' and d.id = dr.deviceid 
+  and e.id = dr.employeeid
+--Summery:
+--employeeid, lname, fname, model of the device, checouttime and return status 
+
+--number 8
+--This query will count and return the number of device exist in the company with their model and make 
+  select count(id) as "NUMBER OF DEVICE", model, make
+  from device 
+  group by model,make
+ --Summary :
+ --Number of table,Model and their make
+ 
+ --Number 9
+--This query show any device that has not been returned by employee
+--This enable you to quickly check how many device has not been return and who has not returned yet
+  select e.id, e.Lname, e.Fname, d.model, d.make,checkouttime, returntime
+  from employee e, devicerecord, device d
+  where returntime is null and devicerecord.employeeid = e.id and
+  d.id = devicerecord.deviceid
+--Summary:
+--employeeid, lname, fname, device model, device make, checkouttime and returntime 
+
+--Number 10
+-- This query will return how many employee are registered in order to check out device
+ select count(id) as "Number of Employee"
+ from employee
+--Summary:
+--Number of employee (one single row in our case, 10)
+
+
