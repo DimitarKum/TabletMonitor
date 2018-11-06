@@ -34,26 +34,26 @@ Take all or none from 7 through 11
 For 7 through 11 "As  for  the  remaining  five  queries,  you must design and construct the SQL queries such that they are useful and pertinent to your database application":
 
 7) SQL Query 6: Create your own non-trivial SQL query
-1 Point
+1 Point (Alemneh)
 
 8) SQL Query 7: Create your own non-trivial SQL query
-1 Point
+1 Point (Alemneh)
 
 9) SQL Query 8: Create your own non-trivial SQL query
-1 Point
+1 Point (Alemneh)
 
 10) SQL Query 9: Create your own non-trivial SQL query
-1 Point
+1 Point (Alemneh)
 
 11) SQL Query 10: Create your own non-trivial SQL query
-1 Point
+1 Point (Alemneh)
 
 
 12) Document Create table commands
-3 Point
+3 Point (Alemneh)
 
 13) Document sample data commands
-1 Point
+1 Point (Alemneh)
 
 
 
