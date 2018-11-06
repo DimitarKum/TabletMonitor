@@ -145,7 +145,7 @@ Insert Into DeviceRecord (DeviceId, EmployeeId)
 Values(9, 10);
 
 Insert Into DeviceRecord (DeviceId, EmployeeId)
-Values(10, 11);
+Values(10, 10);
 
 -- Show all our tables:
 Select *
