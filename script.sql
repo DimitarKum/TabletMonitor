@@ -107,11 +107,11 @@ Values('Gordon', 'Smith');
 Insert Into Employee(Fname, Lname)
 Values('Jenny', 'Rosen');
 
-Insert Into Employee(Fname, Lname)
-Values('David', 'Guetta');
+Insert Into Employee(Fname, Lname, Position)
+Values('David', 'Guetta', 'Supervisor');
 
-Insert Into Employee(Fname, Lname)
-Values('Alex', 'Berry');
+Insert Into Employee(Fname, Lname, Position)
+Values('Alex', 'Berry', 'Supervisor');
 
 Insert Into Employee(Fname, Lname)
 Values('Dimitar', 'Kum');
@@ -161,8 +161,8 @@ Insert Into Device(Make, Model)
 Values('Lenovo', 'Tab 7 Essential');
 
 /*
-We insert 9 DeviceRecords into the database.
-These will indicate that all our devices are currently checked out
+We insert 6 DeviceRecords into the database.
+These will indicate that some of our devices are currently checked out
 by some of our employees.
 */
 Insert Into DeviceRecord (DeviceId, EmployeeId)
@@ -175,25 +175,14 @@ Insert Into DeviceRecord (DeviceId, EmployeeId)
 Values(3, 4);
 
 Insert Into DeviceRecord (DeviceId, EmployeeId)
-Values(4, 5);
+Values(4, 6);
 
 Insert Into DeviceRecord (DeviceId, EmployeeId)
-Values(5, 6);
+Values(6, 8);
 
 Insert Into DeviceRecord (DeviceId, EmployeeId)
-Values(6, 7);
+Values(7, 9);
 
-Insert Into DeviceRecord (DeviceId, EmployeeId)
-Values(7, 8);
-
-Insert Into DeviceRecord (DeviceId, EmployeeId)
-Values(8, 9);
-
-Insert Into DeviceRecord (DeviceId, EmployeeId)
-Values(9, 10);
-
-Insert Into DeviceRecord (DeviceId, EmployeeId)
-Values(10, 1);
 
 /* Make sure all devices currently checked out
 (their DeviceRecord has no return time) are marked as checked out.*/
@@ -223,7 +212,7 @@ Where Device.ID In (Select DeviceRecord.DeviceId as ID
 -- associated with their checkout status 
   select e.Fname, e.Lname, d.make, D.Model, dr.checkouttime, dr.Returntime 
   from Device d JOIN devicerecord dr ON 
-  D.ID = dr.deviceid JOIN employee e on dr.employeeid = E.ID
+  D.ID = dr.deviceid JOIN employee e on dr.employeeid = E.ID;
 -- Summary:
 -- employee fname, lname, device make and model, device record checkout and check in time 
 
@@ -235,13 +224,13 @@ WHERE id = ALL
     (SELECT employeeid
     FROM devicerecord
     WHERE deviceid >= 12)
-GROUP BY POSITION
+GROUP BY POSITION;
 
  --Number 3
  -- The following query selcts deviceid,checkOutTime, returnTime from deviceRecord and returns those record for Kenny.
 SELECT deviceid,checkOutTime, returnTime FROM deviceRecord 
 where deviceid= (SELECT id
-FROM employee where fname='Kenny')
+FROM employee where fname='Kenny');
 
 --Number 4
 -- The following query selcts deviceID and checkOutTime from deviceRecord table and model from device then join them using FULL JOIN.
@@ -263,7 +252,7 @@ Where Employee.Position <> 'Supervisor';
 --This query will check a device that has been checked out by employee by using employee number
   select e.Lname, d.id, d.make, d.model  
   from employee e, device d, devicerecord dr
-  where e.id = dr.EMPLOYEEID and d.id = dr.DEVICEID
+  where e.id = dr.EMPLOYEEID and d.id = dr.DEVICEID;
 --Summary:
 --display Lname, device id, device make and model of 
 --the tables currently has been checked out 
@@ -273,7 +262,7 @@ Where Employee.Position <> 'Supervisor';
   select e.id, e.Lname,e.Fname, d.model, dr.checkouttime, dr.returntime
   from device d, employee e, devicerecord dr
   where e.Lname = 'Rosen' and d.id = dr.deviceid 
-  and e.id = dr.employeeid
+  and e.id = dr.employeeid;
 --Summery:
 --employeeid, lname, fname, model of the device, checouttime and return status 
 
@@ -281,7 +270,7 @@ Where Employee.Position <> 'Supervisor';
 --This query will count and return the number of device exist in the company with their model and make 
   select count(id) as "NUMBER OF DEVICE", model, make
   from device 
-  group by model,make
+  group by model,make;
  --Summary :
  --Number of table,Model and their make
  
@@ -291,13 +280,13 @@ Where Employee.Position <> 'Supervisor';
   select e.id, e.Lname, e.Fname, d.model, d.make,checkouttime, returntime
   from employee e, devicerecord, device d
   where returntime is null and devicerecord.employeeid = e.id and
-  d.id = devicerecord.deviceid
+  d.id = devicerecord.deviceid;
 --Summary:
 --employeeid, lname, fname, device model, device make, checkouttime and returntime 
 
 --Number 10
 -- This query will return how many employee are registered in order to check out device
- select count(id) as "Number of Employee"
- from employee
+ select count(id) as "Number of Employees"
+ from employee;
 --Summary:
 --Number of employee (one single row in our case, 10)
