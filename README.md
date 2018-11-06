@@ -17,12 +17,12 @@ For 2 through 11 make sure you "Document SQL Queries (Ensure that proper documen
 2 Point (Alemneh Alredy did this part)
 
 3) SQL Query 2: Uses nested queries with the ANY or ALL operator and uses a GROUP BY clause
-2 Point (COMPLETED BY LEUL)
+2 Point (Completed By Leul)
 
 4) SQL Query 2: A correlated nested query
 2 Point
 
-5) SQL Query 4: Uses a FULL JOIN
+5) SQL Query 4: Uses a FULL JOIN (Completed By Leul) 
 2 Point
 
 6) SQL Query 5: Uses nested queries with any of the set operations UNION, EXCEPT, or INTERSECT
