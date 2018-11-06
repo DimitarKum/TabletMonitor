@@ -50,10 +50,10 @@ For 7 through 11 "As  for  the  remaining  five  queries,  you must design and c
 
 
 12) Document Create table commands
-3 Point (Alemneh)
+3 Point 
 
 13) Document sample data commands
-1 Point (Alemneh)
+1 Point 
 
 
 
