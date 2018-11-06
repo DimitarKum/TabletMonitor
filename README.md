@@ -17,7 +17,7 @@ For 2 through 11 make sure you "Document SQL Queries (Ensure that proper documen
 2 Point (Alemneh Alredy did this part)
 
 3) SQL Query 2: Uses nested queries with the ANY or ALL operator and uses a GROUP BY clause
-2 Point
+2 Point (COMPLETED BY LEUL)
 
 4) SQL Query 2: A correlated nested query
 2 Point
