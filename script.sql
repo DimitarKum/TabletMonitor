@@ -166,6 +166,18 @@ From DeviceRecord;
 -- Summary:
 --employee fname, lname, device make and model, device record checkout and check in time 
 
+--Number 3
+-- Nested queries with the ANY operator thta uses a GROUP BY clause.
+SELECT COUNT(ID), POSITION
+  FROM employee
+ WHERE id = ALL 
+       (SELECT employeeid
+          FROM devicerecord
+         WHERE deviceid >= 12)
+         
+         GROUP BY POSITION
+
+
 
 --Number 6
 --This query will check a device that has been checked out by employee by using employee number
