@@ -124,28 +124,28 @@ Values(2, 3);
 
 -- Added more DeviceRecordes --
 Insert Into DeviceRecord (DeviceId, EmployeeId)
-Values(1, 2);
-
-Insert Into DeviceRecord (DeviceId, EmployeeId)
 Values(3, 4);
 
 Insert Into DeviceRecord (DeviceId, EmployeeId)
-Values(4, 2);
+Values(4, 5);
 
 Insert Into DeviceRecord (DeviceId, EmployeeId)
-Values(5, 3);
+Values(5, 6);
 
 Insert Into DeviceRecord (DeviceId, EmployeeId)
-Values(6, 5);
+Values(6, 7);
 
 Insert Into DeviceRecord (DeviceId, EmployeeId)
-Values(7, 5);
+Values(7, 8);
 
 Insert Into DeviceRecord (DeviceId, EmployeeId)
-Values(8, 6);
+Values(8, 9);
 
 Insert Into DeviceRecord (DeviceId, EmployeeId)
-Values(9, 7);
+Values(9, 10);
+
+Insert Into DeviceRecord (DeviceId, EmployeeId)
+Values(10, 11);
 
 -- Show all our tables:
 Select *
